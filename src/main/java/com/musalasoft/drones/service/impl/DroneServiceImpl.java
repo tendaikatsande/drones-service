@@ -9,6 +9,8 @@ import com.musalasoft.drones.helper.DroneState;
 import com.musalasoft.drones.repository.ConsignmentRepository;
 import com.musalasoft.drones.repository.DroneRepository;
 import com.musalasoft.drones.repository.MedicationRepository;
+import com.musalasoft.drones.service.DroneService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

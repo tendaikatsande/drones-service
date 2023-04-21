@@ -1,4 +1,4 @@
-package com.musalasoft.drones.service.impl;
+package com.musalasoft.drones.service;
 
 import com.musalasoft.drones.dto.DroneBatteryResponse;
 import com.musalasoft.drones.dto.DroneMedicationResponse;

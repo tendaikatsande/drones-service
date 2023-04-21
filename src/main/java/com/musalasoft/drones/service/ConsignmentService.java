@@ -1,4 +1,4 @@
-package com.musalasoft.drones.service.impl;
+package com.musalasoft.drones.service;
 
 import com.musalasoft.drones.entity.Consignment;
 

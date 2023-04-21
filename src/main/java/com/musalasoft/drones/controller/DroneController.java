@@ -4,7 +4,8 @@ import com.musalasoft.drones.dto.DroneBatteryResponse;
 import com.musalasoft.drones.dto.DroneMedicationResponse;
 import com.musalasoft.drones.entity.Drone;
 import com.musalasoft.drones.entity.Medication;
-import com.musalasoft.drones.service.impl.DroneService;
+import com.musalasoft.drones.service.DroneService;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

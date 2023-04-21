@@ -60,6 +60,7 @@ public class ServiceSeeder implements CommandLineRunner {
                         .name(faker.ancient().god().toUpperCase())
                         .code(faker.ancient().god().toUpperCase())
                         .weight(faker.number().numberBetween(1, 20))
+                        .allocated(false)
                         .image(faker.internet().image())
                         .build();
                 medications.add(medication);

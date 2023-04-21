@@ -2,6 +2,9 @@ package com.musalasoft.drones.service.impl;
 
 import com.musalasoft.drones.entity.Consignment;
 import com.musalasoft.drones.entity.Drone;
+import com.musalasoft.drones.service.ConsignmentService;
+import com.musalasoft.drones.service.DroneService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

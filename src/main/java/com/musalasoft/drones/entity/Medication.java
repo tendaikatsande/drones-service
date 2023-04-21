@@ -1,6 +1,7 @@
 package com.musalasoft.drones.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -29,11 +30,12 @@ public class Medication {
     @Positive(message = "Weight must be greater than 0")
     private float weight;
 
-
     @Column(name = "code", nullable = false)
     @Pattern(regexp = "^[A-Z_]+$", message = "Code can only contain uppercase letters and underscores")
     private String code;
 
+    @Column(name = "allocated", nullable = false)
+    private Boolean allocated = false;
 
     @Column(name = "image")
     private String image;
