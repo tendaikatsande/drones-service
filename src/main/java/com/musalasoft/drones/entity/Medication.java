@@ -1,6 +1,8 @@
 package com.musalasoft.drones.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +22,16 @@ public class Medication {
     private Long id;
 
     @Column(name = "name", nullable = false)
+    @Pattern(regexp = "^[A-Za-z0-9_-]+$", message = "Name can only contain letters, numbers, hyphens, and underscores")
     private String name;
 
     @Column(name = "weight", nullable = false)
+    @Positive(message = "Weight must be greater than 0")
     private float weight;
 
 
     @Column(name = "code", nullable = false)
+    @Pattern(regexp = "^[A-Z_]+$", message = "Code can only contain uppercase letters and underscores")
     private String code;
 
 
