@@ -17,4 +17,7 @@ public interface DroneService {
     List<Drone> getAvailableDrones();
 
     DroneBatteryResponse getDroneBatteryLevel(long droneId) throws Exception;
+
+
+    Drone getDrone(Long droneId) throws Exception;
 }

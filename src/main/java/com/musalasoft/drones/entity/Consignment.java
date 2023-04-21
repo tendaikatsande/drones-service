@@ -1,5 +1,6 @@
 package com.musalasoft.drones.entity;
 
+import com.musalasoft.drones.helper.ConsignmentState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,9 @@ public class Consignment {
     @JoinColumn(name = "medication_id")
     private Medication medication;
     
+    @Column(name = "state", nullable = false)
+    private ConsignmentState state = ConsignmentState.LOADED;
+
     @Column(name = "dateCreated")
     private Instant dateCreated = Instant.now();
 

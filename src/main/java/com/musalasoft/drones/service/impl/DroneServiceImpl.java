@@ -58,8 +58,8 @@ public class DroneServiceImpl implements DroneService {
         return droneBatteryResponse;
     }
 
-
-    private Drone getDrone(Long droneId) throws Exception {
+    @Override
+    public Drone getDrone(Long droneId) throws Exception {
         Optional<Drone> drone = droneRepository.findById(droneId);
         if (drone.isPresent()) {
             return drone.get();
