@@ -1,5 +1,8 @@
 package com.musalasoft.drones.service.impl;
 
+import com.musalasoft.drones.dto.DroneBatteryResponse;
+import com.musalasoft.drones.dto.DroneMedicationResponse;
+import com.musalasoft.drones.entity.Consignment;
 import com.musalasoft.drones.entity.Drone;
 import com.musalasoft.drones.entity.Medication;
 import com.musalasoft.drones.helper.DroneState;
@@ -28,14 +31,17 @@ public class DroneServiceImpl implements DroneService {
 
     @Override
     public List<Medication> loadDrone(Long droneId, List<Medication> medication) throws Exception {
-        getDrone(droneId);
+        Drone drone = getDrone(droneId);
+        //check if current consignment can accomodate the medication
+        //load drone or reject loaded
         return List.of();
     }
 
     @Override
-    public List<Medication> getDroneMedications(long droneId) throws Exception {
-        getDrone(droneId);
-        return List.of();
+    public DroneMedicationResponse getDroneMedications(long droneId) throws Exception {
+        Drone drone = getDrone(droneId);
+        //get drone current consignment
+        return new DroneMedicationResponse(droneId, List.of());
 
     }
 
@@ -45,8 +51,11 @@ public class DroneServiceImpl implements DroneService {
     }
 
     @Override
-    public Float getDroneBatteryLevel(long droneId) throws Exception {
-        return getDrone(droneId).getBatteryCapacity();
+    public DroneBatteryResponse getDroneBatteryLevel(long droneId) throws Exception {
+        DroneBatteryResponse droneBatteryResponse = DroneBatteryResponse.builder()
+                .droneId(droneId).batteryLevel(getDrone(droneId).getBatteryCapacity())
+                .build();
+        return droneBatteryResponse;
     }
 
 
@@ -56,5 +65,10 @@ public class DroneServiceImpl implements DroneService {
             return drone.get();
         }
         throw new Exception("Drone not found");
+    }
+
+
+    private List<Consignment> getDroneCurrentConsignment(Long droneId) {
+        return List.of();
     }
 }

@@ -1,5 +1,7 @@
 package com.musalasoft.drones.controller;
 
+import com.musalasoft.drones.dto.DroneBatteryResponse;
+import com.musalasoft.drones.dto.DroneMedicationResponse;
 import com.musalasoft.drones.entity.Drone;
 import com.musalasoft.drones.entity.Medication;
 import com.musalasoft.drones.service.impl.DroneService;
@@ -30,7 +32,7 @@ public class DroneController {
     }
 
     @GetMapping("/{droneId}/medications")
-    private ResponseEntity<List<Medication>> getDroneMedications(@PathVariable Long droneId) throws Exception {
+    private ResponseEntity<DroneMedicationResponse> getDroneMedications(@PathVariable Long droneId) throws Exception {
         return ResponseEntity.ok(droneService.getDroneMedications(droneId));
     }
 
@@ -40,7 +42,7 @@ public class DroneController {
     }
 
     @GetMapping("/{droneId}/battery")
-    private ResponseEntity<?> getDroneBatteryLevel(@PathVariable Long droneId) throws Exception {
+    private ResponseEntity<DroneBatteryResponse> getDroneBatteryLevel(@PathVariable Long droneId) throws Exception {
         return ResponseEntity.ok(droneService.getDroneBatteryLevel(droneId));
     }
 
