@@ -25,8 +25,6 @@ public class ServiceSeeder implements CommandLineRunner {
 
     private final MedicationRepository medicationRepository;
 
-    private final FakeValuesService fakeValuesService;
-
     private final Faker faker;
 
 
@@ -59,8 +57,8 @@ public class ServiceSeeder implements CommandLineRunner {
             Medication medication;
             for (int i = 0; i < 100; i++) {
                 medication = Medication.builder()
-                        .name(faker.name().name())
-                        .code(faker.code().isbn10())
+                        .name(faker.ancient().god().toUpperCase())
+                        .code(faker.ancient().god().toUpperCase())
                         .weight(faker.number().numberBetween(1, 20))
                         .image(faker.internet().image())
                         .build();
