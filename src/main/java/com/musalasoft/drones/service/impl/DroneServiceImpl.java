@@ -10,8 +10,9 @@ import com.musalasoft.drones.repository.ConsignmentRepository;
 import com.musalasoft.drones.repository.DroneRepository;
 import com.musalasoft.drones.repository.MedicationRepository;
 import com.musalasoft.drones.service.DroneService;
-
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,6 +68,11 @@ public class DroneServiceImpl implements DroneService {
             return drone.get();
         }
         throw new Exception("Drone not found");
+    }
+
+    @Override
+    public Page<Drone> getAll(Pageable pageable) {
+        return droneRepository.findAll(pageable);
     }
 
 
