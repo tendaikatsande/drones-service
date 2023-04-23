@@ -9,7 +9,12 @@ public interface ConsignmentService {
 
     float getDroneConsignmentWeight(Long droneId);
 
-    void addMedicationToDroneConsignment(Long droneId, Long medicationId);
+    void addMedicationToDroneConsignment(Long droneId, Long medicationId) throws Exception;
+
+    void removeMedicationToDroneConsignment(Long droneId, Long medicationId) throws Exception;
+
+    void deliverConsignment(Long droneId);
+
 
     Boolean canLoadMedication(Long droneId, float medicationWeight) throws Exception;
 }

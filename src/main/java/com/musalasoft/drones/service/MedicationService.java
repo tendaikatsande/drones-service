@@ -1,12 +1,17 @@
 package com.musalasoft.drones.service;
 
-import java.util.List;
-
 import com.musalasoft.drones.entity.Medication;
 
+import java.util.List;
+
 public interface MedicationService {
-    public List<Medication> getAll();
-    public List<Medication> getUnallocated();
-    public List<Medication> getAllocated();
-    
+    List<Medication> getAll();
+
+    List<Medication> getUnallocated();
+
+    List<Medication> getAllocated();
+
+    Medication getMedication(Long medicationId) throws Exception;
+
+    void markAsAllocated(Long medicationId) throws Exception;
 }
