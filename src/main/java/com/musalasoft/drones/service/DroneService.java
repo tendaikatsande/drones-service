@@ -12,7 +12,7 @@ import java.util.List;
 public interface DroneService {
     Drone registerDrone(Drone drone);
 
-    List<Medication> loadDrone(Long droneId, List<Medication> medication) throws Exception;
+    DroneMedicationResponse loadDrone(Long droneId, List<Medication> medication) throws Exception;
 
     DroneMedicationResponse getDroneMedications(long droneId) throws Exception;
 
@@ -22,6 +22,6 @@ public interface DroneService {
 
 
     Drone getDrone(Long droneId) throws Exception;
-    
+
     Page<Drone> getAll(Pageable pageable);
 }

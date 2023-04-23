@@ -1,20 +1,24 @@
 package com.musalasoft.drones.service;
 
 import com.musalasoft.drones.entity.Consignment;
+import com.musalasoft.drones.entity.Drone;
+import com.musalasoft.drones.entity.Medication;
 
 import java.util.List;
 
 public interface ConsignmentService {
-    List<Consignment> getDroneConsignment(Long droneId);
+    List<Consignment> getDroneConsignment(Drone drone);
 
-    float getDroneConsignmentWeight(Long droneId);
-
-    void addMedicationToDroneConsignment(Long droneId, Long medicationId) throws Exception;
-
-    void removeMedicationToDroneConsignment(Long droneId, Long medicationId) throws Exception;
-
-    void deliverConsignment(Long droneId);
+    float getDroneConsignmentWeight(Drone drone);
 
 
-    Boolean canLoadMedication(Long droneId, float medicationWeight) throws Exception;
+    void addMedicationToDroneConsignment(Drone drone, Medication medication) throws Exception;
+
+    void removeMedicationFromDroneConsignment(Drone drone, Medication medication) throws Exception;
+
+    void deliverConsignment(Drone drone);
+
+
+    Boolean canLoadMedication(Drone drone, float medicationWeight) throws Exception;
+
 }

@@ -7,6 +7,7 @@ import com.musalasoft.drones.service.DroneBatteryCheckService;
 import com.musalasoft.drones.service.DroneService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -40,15 +41,18 @@ public class DroneBatteryCheckServiceImpl implements DroneBatteryCheckService {
 
     }
 
-    private void processDrones(Slice<Drone> drones) {
+    @Override
+    public Page<DroneBatteryLog> getAll(Pageable pageable) {
+        return droneBatteryLogRepository.findAll(pageable);
+    }
+
+    public void processDrones(Slice<Drone> drones) {
         List<DroneBatteryLog> droneBatteryLogs = new ArrayList<>();
-        drones.get().forEach(drone -> {
-            droneBatteryLogs.add(DroneBatteryLog.builder()
-                    .drone(drone)
-                    .batteryLevel(drone.getBatteryCapacity())
-                    .createdAt(Instant.now())
-                    .build());
-        });
+        drones.get().forEach(drone -> droneBatteryLogs.add(DroneBatteryLog.builder()
+                .drone(drone)
+                .batteryLevel(drone.getBatteryCapacity())
+                .createdAt(Instant.now())
+                .build()));
         log.info("Batch : {} ", drones);
         droneBatteryLogRepository.saveAll(droneBatteryLogs);
     }
