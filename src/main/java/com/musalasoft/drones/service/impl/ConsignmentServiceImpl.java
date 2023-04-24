@@ -58,12 +58,12 @@ public class ConsignmentServiceImpl implements ConsignmentService {
     }
 
     @Override
-    public Boolean canLoadMedication(Drone drone, float medicationWeight) {
+    public Boolean canLoadMedication(Drone drone, float medicationWeight) throws Exception {
         if (drone.getBatteryCapacity() < 25)
             throw new IllegalStateException("Drone Battery capacity is less than 25% and can not load");
         float remainingWeight = drone.getWeightLimit() - (getDroneConsignmentWeight(drone) + medicationWeight);
         if (remainingWeight < 0)
-            throw new IllegalArgumentException("Exceeds weight limit by " + remainingWeight);
+            throw new Exception("Exceeds weight limit by " + remainingWeight);
         return true;
     }
 }
