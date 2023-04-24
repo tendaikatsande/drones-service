@@ -1,7 +1,6 @@
 package com.musalasoft.drones.config;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.service.FakeValuesService;
 import com.musalasoft.drones.entity.Drone;
 import com.musalasoft.drones.entity.Medication;
 import com.musalasoft.drones.helper.DroneModel;

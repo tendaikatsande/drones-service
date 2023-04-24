@@ -40,18 +40,21 @@ public class DroneServiceImpl implements DroneService {
             if ((currentLoadWeight + medicationWeight.get()) > drone.getWeightLimit()) {
                 throw new Exception("Weight limit exceeded");
             }
+
+            medications.forEach(medication -> {
+                try {
+                    consignmentService.addMedicationToDroneConsignment(drone, medication);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            if(drone.getState()== DroneState.IDLE){
+                updateDroneState(droneId, DroneState.LOADING);
+            }
         } else {
             throw new Exception("Weight of medication could not be determined");
         }
-
-        medications.forEach(medication -> {
-            try {
-                consignmentService.addMedicationToDroneConsignment(drone, medication);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-
         return getDroneMedications(droneId);
     }
 
