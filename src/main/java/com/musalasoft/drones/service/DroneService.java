@@ -4,6 +4,7 @@ import com.musalasoft.drones.dto.DroneBatteryResponse;
 import com.musalasoft.drones.dto.DroneMedicationResponse;
 import com.musalasoft.drones.entity.Drone;
 import com.musalasoft.drones.entity.Medication;
+import com.musalasoft.drones.helper.DroneState;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -24,4 +25,6 @@ public interface DroneService {
     Drone getDrone(Long droneId) throws Exception;
 
     Page<Drone> getAll(Pageable pageable);
+
+    Drone updateDroneState(Long droneId, DroneState state) throws Exception;
 }

@@ -2,10 +2,10 @@ package com.musalasoft.drones.controller;
 
 import com.musalasoft.drones.dto.DroneBatteryResponse;
 import com.musalasoft.drones.dto.DroneMedicationResponse;
+import com.musalasoft.drones.dto.DroneStateChangeRequest;
 import com.musalasoft.drones.entity.Drone;
 import com.musalasoft.drones.entity.Medication;
 import com.musalasoft.drones.service.DroneService;
-
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +45,11 @@ public class DroneController {
     @GetMapping("/{droneId}/battery")
     private ResponseEntity<DroneBatteryResponse> getDroneBatteryLevel(@PathVariable Long droneId) throws Exception {
         return ResponseEntity.ok(droneService.getDroneBatteryLevel(droneId));
+    }
+
+    @PatchMapping("/{droneId}/change-state")
+    private ResponseEntity<Drone> setDroneState(@PathVariable Long droneId, @RequestBody DroneStateChangeRequest droneStateChangeRequest) throws Exception {
+        return ResponseEntity.ok(droneService.updateDroneState(droneId, droneStateChangeRequest.getState()));
     }
 
 

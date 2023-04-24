@@ -92,5 +92,12 @@ public class DroneServiceImpl implements DroneService {
         return droneRepository.findAll(pageable);
     }
 
+    @Override
+    public Drone updateDroneState(Long droneId, DroneState state) throws Exception {
+        Drone drone = getDrone(droneId);
+        drone.setState(state);
+        return droneRepository.save(drone);
+    }
+
 
 }
