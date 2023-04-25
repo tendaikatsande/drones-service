@@ -13,8 +13,9 @@ import com.musalasoft.drones.service.DroneService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -24,25 +25,21 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@RunWith(MockitoJUnitRunner.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class DroneServiceIntegrationTest {
 
     @Autowired
+    Faker faker;
+    @Autowired
     private DroneService droneService;
-
     @Autowired
     private DroneRepository droneRepository;
-
     @Autowired
     private MedicationRepository medicationRepository;
-
     @Autowired
     private ConsignmentService consignmentService;
-
-    @Autowired
-    Faker faker;
-
     private Drone drone;
     private List<Medication> medications;
 
@@ -81,7 +78,7 @@ public class DroneServiceIntegrationTest {
 
     @Test
     public void testLoadDrone() throws Exception {
-    
+
         // Load the drone with medications
         DroneMedicationResponse response = droneService.loadDrone(drone.getId(), medications);
 
@@ -90,7 +87,10 @@ public class DroneServiceIntegrationTest {
 
         // Check if the medications are loaded into the drone
         List<Medication> loadedMedication = new ArrayList<>();
-         medications.forEach(medication->{medication.setAllocated(true); loadedMedication.add(medication);});
+        medications.forEach(medication -> {
+            medication.setAllocated(true);
+            loadedMedication.add(medication);
+        });
         assertThat(response.getMedications()).containsAll(loadedMedication);
     }
 
