@@ -30,9 +30,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class ConsignmentServiceTest {
+ class ConsignmentServiceTest {
     @InjectMocks
     private ConsignmentServiceImpl consignmentService;
 

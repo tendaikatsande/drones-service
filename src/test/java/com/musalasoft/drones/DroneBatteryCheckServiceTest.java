@@ -26,7 +26,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-@SpringBootTest
 public class DroneBatteryCheckServiceTest {
     @InjectMocks
     private DroneBatteryCheckServiceImpl droneBatteryCheckService;
@@ -36,22 +35,6 @@ public class DroneBatteryCheckServiceTest {
 
     @Mock
     private DroneBatteryLogRepository droneBatteryLogRepository;
-
-    @Autowired
-    private Faker faker;
-    private Drone drone;
-
-    @BeforeEach
-    public void setUp() {
-        // Create a drone and save it to the repository
-        drone = new Drone();
-        drone.setWeightLimit(50.0f);
-        drone.setBatteryCapacity(100.0f);
-        drone.setState(DroneState.IDLE);
-        drone.setSerialNumber(String.valueOf(faker.code().imei()));
-        drone.setModel(DroneModel.Cruiserweight);
-        drone = droneService.registerDrone(drone);
-    }
 
     @Test
     public void testCheckBatteryStatus_noDrones() {
@@ -63,9 +46,11 @@ public class DroneBatteryCheckServiceTest {
     @Test
     public void testProcessDrones_nonEmptySlice() {
         // Prepare data
+        Drone drone = new Drone(1L, "Drone 1", DroneModel.Heavyweight, 150f, 100f, DroneState.IDLE);
+        Drone drone2 = new Drone(2L, "Drone 2", DroneModel.Heavyweight, 150f, 100f, DroneState.IDLE);
         List<Drone> droneList = new ArrayList<>();
         droneList.add(drone);
-        droneList.add(drone);
+        droneList.add(drone2);
 
         Slice<Drone> droneSlice = new SliceImpl<>(droneList);
 
@@ -75,6 +60,5 @@ public class DroneBatteryCheckServiceTest {
         // Verify interactions
         verify(droneBatteryLogRepository, times(1)).saveAll(any());
     }
-
 
 }

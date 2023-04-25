@@ -8,16 +8,11 @@ import com.musalasoft.drones.helper.DroneModel;
 import com.musalasoft.drones.helper.DroneState;
 import com.musalasoft.drones.repository.DroneRepository;
 import com.musalasoft.drones.repository.MedicationRepository;
-import com.musalasoft.drones.service.ConsignmentService;
 import com.musalasoft.drones.service.DroneService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +20,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@RunWith(MockitoJUnitRunner.class)
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class DroneServiceIntegrationTest {
 
@@ -38,8 +31,6 @@ public class DroneServiceIntegrationTest {
     private DroneRepository droneRepository;
     @Autowired
     private MedicationRepository medicationRepository;
-    @Autowired
-    private ConsignmentService consignmentService;
     private Drone drone;
     private List<Medication> medications;
 
